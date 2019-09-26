@@ -11,18 +11,20 @@
 		width: 28px;
 		height: 3px;
 		margin: 0 0 5px 0;
-		background-color: #fff;
+		background-color: set-text-color($primary-color);
 		@include easeOut;
 	}
 
 	// rotate menu burger to X with menu text lines
 	&.close {
 		transform: rotate(180deg);
+		transform-origin: center;
 
 		.btn-line {
 			// line 1 (1st one) -> rotate it
 			&:nth-child(1) {
 				transform: rotate(45deg) translate(5px, 5px);
+				transform-origin: center;
 			}
 			// line 2 (2nd one) -> hide it
 			&:nth-child(2) {
@@ -31,7 +33,92 @@
 			// line 3 (3rd one) -> rotate it
 			&:nth-child(3) {
 				transform: rotate(-45deg) translate(7px, -6px);
+				transform-origin: center;
 			}
 		}
+	}
+}
+
+// menu overlay
+.menu {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	opacity: 0.9;
+	visibility: hidden;
+	&.show {
+		visibility: visible;
+	}
+	&-branding, &-nav {
+		display: flex;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
+		float: left;
+		width: 50%;
+		height: 100vh;
+		overflow: hidden;
+	}
+	&-nav {
+		margin: 0;
+		padding: 0;
+		background: darken($primary-color, 5);
+		list-style: none;
+		transform: translate3d(0, -100%, 0);
+		@include easeOut;
+		&.show {
+			// slide in from top
+			transform: translate3d(0, 0, 0);
+		}
+	}
+	// branding side (div.menu-branding)
+	&-branding {
+		background-color: $primary-color;
+		transform: translate3d(0, 100%, 0);
+		@include easeOut;
+		&.show {
+			// slide in from bottom
+			transform: translate3d(0, 0, 0);
+		}
+		.portrait {
+			width: 250px;
+			height: 250px;
+			background: url('../img/portrait.jpg');
+			border-radius: 50%;
+			border: 3px solid $secondary-color;
+		}
+	}
+	.nav-item {
+		transform: translate3d(600px, 0, 0);
+		@include easeOut;
+		&.show {
+			// slide in from right
+			transform: translate3d(0, 0, 0);
+		}
+		&.current > a {
+			color: $secondary-color;
+		}
+	}
+	.nav-link {
+		display: inline-block;
+		position: relative;
+		font-size: 30px;
+		text-transform: uppercase;
+		padding: 1rem 0;
+		font-weight: 300;
+		color: set-text-color($primary-color);
+		text-decoration: none;
+		@include easeOut;
+		&:hover {
+			color: $secondary-color;
+		}
+	}
+}
+
+// delay each li.nav-item slide in by 0.1s
+// from 1 through 4 cause there are 4 of li.nav-item
+@for $x from 1 through 4 {
+	.nav-item:nth-child(#{$x}) {
+		transition-delay: $x * 0.1s;
 	}
 }
