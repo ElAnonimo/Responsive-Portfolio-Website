@@ -93,6 +93,12 @@
 .nav-item:nth-child(4) {
   transition-delay: 0.4s; }
 
+@media screen and (min-width: 1171px) {
+  .projects {
+    grid-template-columns: repeat(4, 1fr); } }
+@media screen and (min-width: 769px) and (max-width: 1170px) {
+  .projects {
+    grid-template-columns: repeat(3, 1fr); } }
 @media screen and (max-width: 768px) {
   #home {
     align-items: center;
@@ -122,11 +128,17 @@
       height: 150px; }
 
   .about-info {
-    grid-template-areas: 'bio-image' 'bio' 'job1' 'job2' 'job3';
-    grid-template-columns: 1fr; } }
+    grid-template-areas: 'bio-image' 'bio' 'job-1' 'job-2' 'job-3';
+    grid-template-columns: 1fr; }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr); } }
 @media screen and (max-width: 500px) {
   #home .lg-heading {
-    margin-top: 10vh; } }
+    margin-top: 10vh; }
+
+  .projects {
+    grid-template-columns: 1fr; } }
 * {
   box-sizing: border-box; }
 
@@ -211,6 +223,54 @@ main {
     background: #515151;
     padding: 0.5rem;
     border-bottom: 5px solid #eece1a; }
+
+.projects {
+  display: grid;
+  grid-gap: 0.7rem;
+  grid-template-columns: repeat(3, 1fr); }
+  .projects img {
+    width: 100%;
+    border: 3px solid #fff; }
+    .projects img:hover {
+      opacity: 0.5;
+      border-color: #eece1a;
+      transition: all 0.5s ease-out; }
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem; }
+  .boxes div {
+    font-size: 2rem;
+    border: 3px solid #fff;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    transition: all 0.5s ease-out; }
+    .boxes div:hover {
+      padding: 0.5rem 1.5rem;
+      background-color: #eece1a;
+      color: #000; }
+      .boxes div:hover span {
+        color: #000; }
+
+.btn, .btn-dark, .btn-light {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: none;
+  margin-bottom: 0.3rem; }
+  .btn:hover, .btn-dark:hover, .btn-light:hover {
+    background-color: #eece1a;
+    color: #000; }
+
+.btn-dark {
+  background-color: black;
+  color: #fff; }
+
+.btn-light {
+  background-color: #c4c4c4;
+  color: #333; }
 
 #main-footer {
   text-align: center;
